@@ -1,1 +1,4 @@
 com.jnasser.core.presentation.designsystem
+font montserrat_bold
+font montserrat_regular
+font montserrat_semibold
