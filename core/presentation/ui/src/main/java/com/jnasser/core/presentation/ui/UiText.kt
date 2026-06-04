@@ -1,23 +1,34 @@
 package com.jnasser.core.presentation.ui
 
+import android.content.Context
 import androidx.annotation.StringRes
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
 
+/**
+ * Represents text that can be displayed in the UI.
+ * It can be either a dynamic string or a localized string resource.
+ */
 sealed interface UiText {
-    @Composable
-    fun asString(): String
 
-    data class DynamicString(val value: String) : UiText {
-        @Composable
-        override fun asString(): String = value
-    }
+    /**
+     * Represents a dynamic string that is created at runtime.
+     */
+    data class DynamicString(val value: String): UiText
 
-    data class StringResource(
+    /**
+     * Represents a string resource ID with optional formatting arguments.
+     */
+    class StringResource(
         @StringRes val id: Int,
-        val args: List<Any> = emptyList(),
-    ) : UiText {
-        @Composable
-        override fun asString(): String = LocalContext.current.getString(id, *args.toTypedArray())
+        val args: Array<Any> = arrayOf()
+    ): UiText
+
+    /**
+     * Converts the UiText into a String using the provided Context.
+     */
+    fun asString(context: Context): String {
+        return when(this) {
+            is DynamicString -> value
+            is StringResource -> context.getString(id, *args)
+        }
     }
 }

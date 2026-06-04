@@ -11,7 +11,6 @@ object HttpClientFactory {
     private val json = Json {
         ignoreUnknownKeys = true
         explicitNulls = false
-        isLenient = true
     }
 
     fun createRetrofit(
