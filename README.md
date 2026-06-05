@@ -167,6 +167,14 @@ build-logic/
 ./gradlew :pokemon:presentation:testDebugUnitTest :core:data:testDebugUnitTest :core:database:testDebugUnitTest
 ```
 
+## Demo
+
+Video de referencia de la app:
+
+<video controls src="assets/Screen_recording_20260605_001730%20(online-video-cutter.com).mp4" width="100%"></video>
+
+- [Abrir video](</Users/jnasser/Desktop/Trabajo/PruebasTecnicas/PokemonApp/assets/Screen_recording_20260605_001730 (online-video-cutter.com).mp4>)
+
 ## Notas
 
 - La app está pensada para crecer por features.
