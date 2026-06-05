@@ -171,9 +171,7 @@ build-logic/
 
 Video de referencia de la app:
 
-<video controls src="assets/Screen_recording_20260605_001730%20(online-video-cutter.com).mp4" width="100%"></video>
-
-- [Abrir video](</Users/jnasser/Desktop/Trabajo/PruebasTecnicas/PokemonApp/assets/Screen_recording_20260605_001730 (online-video-cutter.com).mp4>)
+https://github.com/user-attachments/assets/526d2c43-31e2-4602-b7e7-e8b63fb83c32
 
 ## Notas
 
