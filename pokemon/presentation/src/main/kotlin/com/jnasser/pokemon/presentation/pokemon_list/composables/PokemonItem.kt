@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardColors
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,6 +28,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import coil.compose.SubcomposeAsyncImage
 import com.jnasser.core.presentation.designsystem.components.PokemonAppLoading
 import com.jnasser.core.presentation.designsystem.extensions.shadow
+import com.jnasser.core.presentation.designsystem.theme.PokemonAppIcons
 import com.jnasser.core.presentation.designsystem.theme.PokemonAppTheme
 import com.jnasser.core.presentation.designsystem.theme.PokemonColors
 import com.jnasser.pokemon.presentation.R
@@ -35,7 +38,8 @@ import com.jnasser.pokemon.presentation.pokemon_list.model.PokemonListDataUi
 fun PokemonItem(
     modifier: Modifier = Modifier,
     pokemon: PokemonListDataUi,
-    onClick: (String) -> Unit
+    onClick: (String) -> Unit,
+    onFavoriteClick: (String) -> Unit
 ) {
     Card(
         modifier = modifier
@@ -63,7 +67,7 @@ fun PokemonItem(
                 .fillMaxSize()
                 .padding(horizontal = 20.dp)
         ) {
-            val (number, image, name) = createRefs()
+            val (number, image, name, favorite) = createRefs()
 
             Text(
                 modifier = Modifier
@@ -80,6 +84,24 @@ fun PokemonItem(
                 ),
                 textAlign = TextAlign.End
             )
+
+            IconButton(
+                modifier = Modifier.constrainAs(favorite) {
+                    start.linkTo(parent.start)
+                    top.linkTo(parent.top)
+                },
+                onClick = { onFavoriteClick(pokemon.number) }
+            ) {
+                Icon(
+                    imageVector = if (pokemon.isFavorite) PokemonAppIcons.Favorite else PokemonAppIcons.FavoriteBorder,
+                    contentDescription = if (pokemon.isFavorite) {
+                        stringResource(R.string.remove_from_favorites)
+                    } else {
+                        stringResource(R.string.add_to_favorites)
+                    },
+                    tint = if (pokemon.isFavorite) MaterialTheme.colorScheme.primary else PokemonColors.Gray200
+                )
+            }
 
             SubcomposeAsyncImage(
                 modifier = Modifier
@@ -132,8 +154,11 @@ private fun PokemonItemPreview() {
             pokemon = PokemonListDataUi(
                 name = "Aron",
                 number = "304",
-                imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png"
-            )
-        ) {}
+                imageUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+                isFavorite = true
+            ),
+            onClick = {},
+            onFavoriteClick = {}
+        )
     }
 }

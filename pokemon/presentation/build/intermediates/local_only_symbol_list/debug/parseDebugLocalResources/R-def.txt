@@ -1,5 +1,8 @@
 R_DEF: Internal format may change without notice
 local
+string add_to_favorites
+string favorites
+string favorites_empty
 string height
 string height_value
 string hello
@@ -8,6 +11,7 @@ string pokedex
 string pokemon
 string pokemon_name
 string pokemon_number
+string remove_from_favorites
 string stats
 string weight
 string weight_value

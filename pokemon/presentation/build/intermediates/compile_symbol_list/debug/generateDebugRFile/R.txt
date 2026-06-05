@@ -1,3 +1,6 @@
+int string add_to_favorites 0x0
+int string favorites 0x0
+int string favorites_empty 0x0
 int string height 0x0
 int string height_value 0x0
 int string hello 0x0
@@ -6,6 +9,7 @@ int string pokedex 0x0
 int string pokemon 0x0
 int string pokemon_name 0x0
 int string pokemon_number 0x0
+int string remove_from_favorites 0x0
 int string stats 0x0
 int string weight 0x0
 int string weight_value 0x0

@@ -15,7 +15,8 @@ import com.jnasser.pokemon.presentation.pokemon_list.model.PokemonListDataUi
 fun PokemonList(
     modifier: Modifier = Modifier,
     pokemonList: List<PokemonListDataUi>,
-    onPokemonClick: (Int) -> Unit
+    onPokemonClick: (Int) -> Unit,
+    onFavoriteClick: (Int) -> Unit
 ) {
     LazyVerticalGrid(
         modifier = modifier.fillMaxSize(),
@@ -29,6 +30,9 @@ fun PokemonList(
                 pokemon = item,
                 onClick = { number ->
                     number.toIntOrNull()?.let { onPokemonClick(it) }
+                },
+                onFavoriteClick = { number ->
+                    number.toIntOrNull()?.let { onFavoriteClick(it) }
                 }
             )
         }

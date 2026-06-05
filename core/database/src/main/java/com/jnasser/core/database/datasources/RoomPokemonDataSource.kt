@@ -1,6 +1,7 @@
 package com.jnasser.core.database.datasources
 
 import android.database.sqlite.SQLiteFullException
+import com.jnasser.core.database.entities.FavoritePokemonEntity
 import com.jnasser.core.database.daos.PokemonDao
 import com.jnasser.core.database.mappers.toPokemon
 import com.jnasser.core.database.mappers.toPokemonEntity
@@ -30,6 +31,13 @@ class RoomPokemonDataSource(
      */
     override fun getPokemons(): Flow<List<Pokemon>> {
         return pokemonDao.getAllWithTypesAndStats()
+            .map { pokemonEntities ->
+                pokemonEntities.map { it.toPokemon() }
+            }
+    }
+
+    override fun getFavoritePokemons(): Flow<List<Pokemon>> {
+        return pokemonDao.getFavoriteWithTypesAndStats()
             .map { pokemonEntities ->
                 pokemonEntities.map { it.toPokemon() }
             }
@@ -92,6 +100,33 @@ class RoomPokemonDataSource(
             val entity = stats.map { it.toPokemonStatEntity() }
             val result = pokemonDao.upsertPokemonStats(entity)
             Result.Success(result.any { it != -1L })
+        } catch (e: SQLiteFullException) {
+            Result.Error(DataError.Local.DISK_FULL)
+        }
+    }
+
+    override suspend fun isPokemonFavorite(pokemonId: Long): Boolean {
+        return pokemonDao.isPokemonFavorite(pokemonId)
+    }
+
+    override suspend fun addPokemonFavorite(pokemonId: Long): Result<Boolean, DataError.Local> {
+        return try {
+            val result = pokemonDao.upsertFavoritePokemon(
+                FavoritePokemonEntity(
+                    pokemonId = pokemonId,
+                    createdAt = System.currentTimeMillis()
+                )
+            )
+            Result.Success(result != -1L)
+        } catch (e: SQLiteFullException) {
+            Result.Error(DataError.Local.DISK_FULL)
+        }
+    }
+
+    override suspend fun removePokemonFavorite(pokemonId: Long): Result<Boolean, DataError.Local> {
+        return try {
+            pokemonDao.deleteFavoritePokemon(pokemonId)
+            Result.Success(true)
         } catch (e: SQLiteFullException) {
             Result.Error(DataError.Local.DISK_FULL)
         }

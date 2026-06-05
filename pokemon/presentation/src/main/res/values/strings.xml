@@ -7,6 +7,10 @@
     <string name="pokemon_number">#%s</string>
     <string name="pokemon_name">pokemon name</string>
     <string name="pokemon">pokemon</string>
+    <string name="favorites">Favoritos</string>
+    <string name="favorites_empty">No hay Pokémon favoritos todavía</string>
+    <string name="add_to_favorites">Agregar a favoritos</string>
+    <string name="remove_from_favorites">Quitar de favoritos</string>
     <string name="weight">Peso</string>
     <string name="height">Altura</string>
     <string name="height_value">%s m</string>

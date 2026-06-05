@@ -1,4 +1,6 @@
 int drawable ic_arrow_left 0x0
+int drawable ic_favorite 0x0
+int drawable ic_favorite_border 0x0
 int drawable ic_pokeball 0x0
 int drawable ic_ruler 0x0
 int drawable ic_scale 0x0
@@ -6,6 +8,9 @@ int drawable ic_search 0x0
 int font montserrat_bold 0x0
 int font montserrat_regular 0x0
 int font montserrat_semibold 0x0
+int string add_to_favorites 0x0
+int string favorites 0x0
+int string remove_from_favorites 0x0
 int string search 0x0
 int string type_bug 0x0
 int string type_dark 0x0
