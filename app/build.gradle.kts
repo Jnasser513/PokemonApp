@@ -50,7 +50,7 @@ dependencies {
     implementation(projects.core.presentation.ui)
     implementation(projects.core.domain)
     implementation(projects.core.data)
-    //implementation(projects.core.database)
+    implementation(projects.core.database)
 
     implementation(projects.pokemon.domain)
     implementation(projects.pokemon.data)
