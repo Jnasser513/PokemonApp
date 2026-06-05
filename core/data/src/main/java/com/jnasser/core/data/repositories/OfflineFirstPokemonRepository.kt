@@ -31,11 +31,22 @@ class OfflineFirstPokemonRepository(
      */
     override fun getPokemons(): Flow<List<Pokemon>> = localPokemonDataSource.getPokemons()
 
+    override fun getFavoritePokemons(): Flow<List<Pokemon>> = localPokemonDataSource.getFavoritePokemons()
+
     /**
      * Retrieves a list of Pokémon from the local database by its ID.
      */
     override fun getPokemonById(pokemonId: Int): Pokemon =
         localPokemonDataSource.getPokemonById(pokemonId)
+
+    override suspend fun togglePokemonFavorite(pokemonId: Long): Result<Boolean, DataError> =
+        withContext(dispatcherProvider.io) {
+            if (localPokemonDataSource.isPokemonFavorite(pokemonId)) {
+                localPokemonDataSource.removePokemonFavorite(pokemonId)
+            } else {
+                localPokemonDataSource.addPokemonFavorite(pokemonId)
+            }
+        }
 
     /**
      * Fetches a list of Pokémon for a specific generation from the remote API.

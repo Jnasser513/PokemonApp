@@ -1,6 +1,8 @@
 R_DEF: Internal format may change without notice
 local
 drawable ic_arrow_left
+drawable ic_favorite
+drawable ic_favorite_border
 drawable ic_pokeball
 drawable ic_ruler
 drawable ic_scale
@@ -8,6 +10,9 @@ drawable ic_search
 font montserrat_bold
 font montserrat_regular
 font montserrat_semibold
+string add_to_favorites
+string favorites
+string remove_from_favorites
 string search
 string type_bug
 string type_dark

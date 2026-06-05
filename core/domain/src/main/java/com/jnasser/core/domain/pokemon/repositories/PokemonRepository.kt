@@ -21,6 +21,8 @@ interface PokemonRepository {
      */
     fun getPokemons(): Flow<List<Pokemon>>
 
+    fun getFavoritePokemons(): Flow<List<Pokemon>>
+
     /**
      * Retrieves a single Pokémon stored locally by its ID.
      *
@@ -37,4 +39,6 @@ interface PokemonRepository {
     suspend fun getPokemonListByGeneration(
         generation: Int
     ): Result<PokemonGeneration, DataError>
+
+    suspend fun togglePokemonFavorite(pokemonId: Long): Result<Boolean, DataError>
 }

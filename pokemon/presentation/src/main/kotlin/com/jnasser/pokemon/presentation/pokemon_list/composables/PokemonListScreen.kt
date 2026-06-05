@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.input.rememberTextFieldState
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -43,7 +44,8 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun PokemonListScreenRoot(
     viewModel: PokemonListViewModel = koinViewModel(),
-    onPokemonDetail: (Int) -> Unit
+    onPokemonDetail: (Int) -> Unit,
+    onOpenFavorites: () -> Unit
 ) {
     val context = LocalContext.current
     ObserveAsEvents(viewModel.events) { event ->
@@ -61,6 +63,7 @@ fun PokemonListScreenRoot(
         onAction = { action ->
             when(action) {
                 is PokemonListAction.OnPokemonDetail -> onPokemonDetail(action.id)
+                PokemonListAction.OnOpenFavorites -> onOpenFavorites()
                 else -> Unit
             }
             viewModel.onAction(action)
@@ -74,7 +77,7 @@ fun PokemonListScreen(
     onAction: (PokemonListAction) -> Unit
 ) {
     PokemonAppScaffold(
-        topAppBar = { PokemonListTopBar() }
+        topAppBar = { PokemonListTopBar(onOpenFavorites = { onAction(PokemonListAction.OnOpenFavorites) }) }
     ) { padding ->
 
         val searchBarState = rememberTextFieldState()
@@ -117,6 +120,9 @@ fun PokemonListScreen(
                     pokemonList = state.filteredPokemonList,
                     onPokemonClick = { pokemonId ->
                         onAction(PokemonListAction.OnPokemonDetail(pokemonId))
+                    },
+                    onFavoriteClick = { pokemonId ->
+                        onAction(PokemonListAction.OnToggleFavorite(pokemonId))
                     }
                 )
             }
@@ -125,26 +131,38 @@ fun PokemonListScreen(
 }
 
 @Composable
-fun PokemonListTopBar(modifier: Modifier = Modifier) {
+fun PokemonListTopBar(
+    modifier: Modifier = Modifier,
+    onOpenFavorites: () -> Unit
+) {
     Row(
         modifier = modifier
             .fillMaxWidth()
             .statusBarsPadding()
             .padding(20.dp),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Start
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Icon(
-            imageVector = PokemonAppIcons.PokeBall,
-            contentDescription = stringResource(R.string.pokeball),
-            tint = MaterialTheme.colorScheme.primary
-        )
-        Spacer(Modifier.width(16.dp))
-        Text(
-            text = stringResource(R.string.pokedex),
-            style = MaterialTheme.typography.headlineSmall,
-            color = MaterialTheme.colorScheme.primary
-        )
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Icon(
+                imageVector = PokemonAppIcons.PokeBall,
+                contentDescription = stringResource(R.string.pokeball),
+                tint = MaterialTheme.colorScheme.primary
+            )
+            Spacer(Modifier.width(16.dp))
+            Text(
+                text = stringResource(R.string.pokedex),
+                style = MaterialTheme.typography.headlineSmall,
+                color = MaterialTheme.colorScheme.primary
+            )
+        }
+        IconButton(onClick = onOpenFavorites) {
+            Icon(
+                imageVector = PokemonAppIcons.FavoriteBorder,
+                contentDescription = stringResource(R.string.favorites),
+                tint = MaterialTheme.colorScheme.primary
+            )
+        }
     }
 }
 

@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.toRoute
+import com.jnasser.pokemon.presentation.pokemon_favorites.composables.PokemonFavoritesScreenRoot
 import com.jnasser.pokemon.presentation.pokemon_detail.composables.PokemonDetailScreenRoot
 import com.jnasser.pokemon.presentation.pokemon_list.composables.PokemonListScreenRoot
 import kotlinx.serialization.Serializable
@@ -32,6 +33,9 @@ fun NavigationRoot(
 data object PokemonListRoute
 
 @Serializable
+data object PokemonFavoritesRoute
+
+@Serializable
 data class PokemonDetailRoute(val pokemonId: Int)
 
 private fun NavGraphBuilder.pokemonGraph(navController: NavHostController) {
@@ -42,6 +46,19 @@ private fun NavGraphBuilder.pokemonGraph(navController: NavHostController) {
             PokemonListScreenRoot(
                 onPokemonDetail = { pokemonId ->
                     navController.navigate(PokemonDetailRoute(pokemonId))
+                },
+                onOpenFavorites = {
+                    navController.navigate(PokemonFavoritesRoute)
+                }
+            )
+        }
+        composable<PokemonFavoritesRoute> {
+            PokemonFavoritesScreenRoot(
+                onPokemonDetail = { pokemonId ->
+                    navController.navigate(PokemonDetailRoute(pokemonId))
+                },
+                onBack = {
+                    navController.navigateUp()
                 }
             )
         }

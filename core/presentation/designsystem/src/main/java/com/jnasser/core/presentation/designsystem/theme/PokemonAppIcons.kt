@@ -26,4 +26,12 @@ object PokemonAppIcons {
     val Ruler: ImageVector
         @Composable
         get() = ImageVector.vectorResource(id = R.drawable.ic_ruler)
+
+    val Favorite: ImageVector
+        @Composable
+        get() = ImageVector.vectorResource(id = R.drawable.ic_favorite)
+
+    val FavoriteBorder: ImageVector
+        @Composable
+        get() = ImageVector.vectorResource(id = R.drawable.ic_favorite_border)
 }
