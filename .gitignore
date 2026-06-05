@@ -1,5 +1,6 @@
 *.iml
 .gradle
+.kotlin
 /local.properties
 /.idea/caches
 /.idea/libraries
@@ -9,6 +10,19 @@
 /.idea/assetWizardSettings.xml
 .DS_Store
 /build
+/app/build/
+/core/**/build/
+/pokemon/**/build/
+/build-logic/**/build/
+/app/.kotlin/
+/core/**/.kotlin/
+/pokemon/**/.kotlin/
+/build-logic/**/.kotlin/
+/build-logic/**/.gradle/
+/core/**/build/tmp/
+/pokemon/**/build/tmp/
+/app/build/tmp/
+*.class
 /captures
 .externalNativeBuild
 .cxx

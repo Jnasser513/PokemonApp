@@ -1,4 +1,10 @@
 com.jnasser.core.presentation.designsystem
+drawable ic_arrow_left
+drawable ic_pokeball
+drawable ic_ruler
+drawable ic_scale
+drawable ic_search
 font montserrat_bold
 font montserrat_regular
 font montserrat_semibold
+string search

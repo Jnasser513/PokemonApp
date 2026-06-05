@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pokeball">Pokeball</string>
+    <string name="pokedex">Pokédex</string>
+    <string name="hello">¡Hola,&#160;</string>
+    <string name="welcome">bienvenido!</string>
+    <string name="pokemon_number">#%s</string>
+    <string name="pokemon_name">pokemon name</string>
+    <string name="pokemon">pokemon</string>
+    <string name="weight">Peso</string>
+    <string name="height">Altura</string>
+    <string name="height_value">%s m</string>
+    <string name="weight_value">%s Kg</string>
+    <string name="stats">Estadísticas</string>
+</resources>

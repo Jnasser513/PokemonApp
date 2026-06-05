@@ -1,0 +1,7 @@
+int string error_disk_full 0x0
+int string error_error_serialization 0x0
+int string error_no_internet 0x0
+int string error_request_timeout 0x0
+int string error_server_error 0x0
+int string error_too_many_request 0x0
+int string error_unknown 0x0

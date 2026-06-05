@@ -1,1 +1,8 @@
 com.jnasser.core.presentation.ui
+string error_disk_full
+string error_error_serialization
+string error_no_internet
+string error_request_timeout
+string error_server_error
+string error_too_many_request
+string error_unknown
