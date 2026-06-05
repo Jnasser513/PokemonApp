@@ -27,6 +27,7 @@ rootProject.name = "PokemonApp"
 include(":app")
 include(":core:data")
 include(":core:domain")
+include(":core:test-fixtures")
 include(":core:presentation:designsystem")
 include(":core:presentation:ui")
 include(":pokemon:data")
