@@ -21,4 +21,15 @@ interface RemotePokemonDataSource {
         generation: Int
     ): Result<PokemonGeneration, DataError.Network>
 
+    /**
+     * Fetches a Pokémon given a specific name.
+     *
+     * @param name The name of pokemon (e.g., Pikachu).
+     * @return A [Result] containing either the [Pokemon] data
+     *         or a [DataError.Network] in case of failure.
+     */
+    suspend fun getPokemonDetail(
+        name: String
+    ): Result<Pokemon, DataError.Network>
+
 }
