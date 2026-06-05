@@ -68,15 +68,19 @@ class OfflineFirstPokemonRepository(
                 val semaphore = Semaphore(CONCURRENT_REQUESTS)
 
                 // Launch concurrent requests to fetch Pokémon details
-                pokemons.map { pokemon ->
+                val pokemonDetails = pokemons.mapNotNull { pokemon ->
                     async {
                         semaphore.withPermit {
                             val pokemonResult = remotePokemonDataSource.getPokemonDetail(pokemon.name)
 
-                            if(pokemonResult is Result.Success) upsertPokemonDetail(pokemonResult.data)
+                            if (pokemonResult is Result.Success) pokemonResult.data else null
                         }
                     }
-                }.awaitAll()
+                }.awaitAll().filterNotNull()
+
+                if (pokemonDetails.isNotEmpty()) {
+                    localPokemonDataSource.upsertPokemons(pokemonDetails)
+                }
 
                 Result.Success(result.data)
             }
@@ -87,12 +91,6 @@ class OfflineFirstPokemonRepository(
      * Persists the given Pokémon detail into the local database,
      * including its types and stats.
      */
-    private suspend fun upsertPokemonDetail(pokemonDetail: Pokemon) {
-        localPokemonDataSource.upsertPokemon(pokemonDetail)
-        localPokemonDataSource.upsertPokemonStats(pokemonDetail.stats)
-        localPokemonDataSource.upsertPokemonTypes(pokemonDetail.types)
-    }
-
     companion object {
         private const val CONCURRENT_REQUESTS = 5
     }

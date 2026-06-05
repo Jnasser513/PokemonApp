@@ -33,6 +33,7 @@ class PokemonListViewModel(
     val events = eventChannel.receiveAsFlow()
 
     init {
+        state = state.copy(isLoading = true)
         getPokemonByGeneration()
         combine(
             getLocalPokemonListUseCase.invoke(),

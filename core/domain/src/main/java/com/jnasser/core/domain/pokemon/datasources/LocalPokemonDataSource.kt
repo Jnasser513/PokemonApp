@@ -11,6 +11,7 @@ interface LocalPokemonDataSource {
     fun getPokemons(): Flow<List<Pokemon>>
     fun getFavoritePokemons(): Flow<List<Pokemon>>
     fun getPokemonById(pokemonId: Int): Pokemon
+    suspend fun upsertPokemons(pokemons: List<Pokemon>): Result<Boolean, DataError.Local>
     suspend fun upsertPokemon(pokemon: Pokemon): Result<Boolean, DataError.Local>
     suspend fun upsertPokemonTypes(types: List<PokemonType>): Result<Boolean, DataError.Local>
     suspend fun upsertPokemonStats(stats: List<PokemonStat>): Result<Boolean, DataError.Local>

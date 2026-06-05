@@ -2,6 +2,7 @@ package com.jnasser.core.database.datasources
 
 import android.database.sqlite.SQLiteFullException
 import com.jnasser.core.database.entities.FavoritePokemonEntity
+import com.jnasser.core.database.PokemonDatabase
 import com.jnasser.core.database.daos.PokemonDao
 import com.jnasser.core.database.mappers.toPokemon
 import com.jnasser.core.database.mappers.toPokemonEntity
@@ -13,6 +14,7 @@ import com.jnasser.core.domain.pokemon.model.PokemonStat
 import com.jnasser.core.domain.pokemon.model.PokemonType
 import com.jnasser.core.domain.util.error_handler.DataError
 import com.jnasser.core.domain.util.result_handler.Result
+import androidx.room.withTransaction
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -21,6 +23,7 @@ import kotlinx.coroutines.flow.map
  * Handles persistence of Pokémon, their types, and stats.
  */
 class RoomPokemonDataSource(
+    private val pokemonDatabase: PokemonDatabase,
     private val pokemonDao: PokemonDao
 ) : LocalPokemonDataSource {
 
@@ -52,6 +55,21 @@ class RoomPokemonDataSource(
      */
     override fun getPokemonById(pokemonId: Int): Pokemon {
         return pokemonDao.getPokemonWithTypesAndStats(pokemonId).toPokemon()
+    }
+
+    override suspend fun upsertPokemons(pokemons: List<Pokemon>): Result<Boolean, DataError.Local> {
+        return try {
+            pokemonDatabase.withTransaction {
+                pokemons.forEach { pokemon ->
+                    upsertPokemon(pokemon)
+                    upsertPokemonStats(pokemon.stats)
+                    upsertPokemonTypes(pokemon.types)
+                }
+            }
+            Result.Success(true)
+        } catch (e: SQLiteFullException) {
+            Result.Error(DataError.Local.DISK_FULL)
+        }
     }
 
     /**
