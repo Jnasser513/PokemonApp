@@ -67,17 +67,13 @@ class OfflineFirstPokemonRepositoryTest {
         coEvery { remotePokemonDataSource.getPokemonDetail("bulbasaur") } returns Result.Success(
             pokemonTestData(1, "bulbasaur")
         )
-        coEvery { localPokemonDataSource.upsertPokemon(any()) } returns Result.Success(true)
-        coEvery { localPokemonDataSource.upsertPokemonStats(any()) } returns Result.Success(true)
-        coEvery { localPokemonDataSource.upsertPokemonTypes(any()) } returns Result.Success(true)
+        coEvery { localPokemonDataSource.upsertPokemons(any()) } returns Result.Success(true)
 
         val repository = createRepository()
         val result = repository.getPokemonListByGeneration(1)
 
         assertTrue(result is Result.Success)
-        coVerify(exactly = 1) { localPokemonDataSource.upsertPokemon(match { it.id == 1L }) }
-        coVerify(exactly = 1) { localPokemonDataSource.upsertPokemonStats(any()) }
-        coVerify(exactly = 1) { localPokemonDataSource.upsertPokemonTypes(any()) }
+        coVerify(exactly = 1) { localPokemonDataSource.upsertPokemons(match { it.size == 1 }) }
     }
 
     private fun createRepository() = OfflineFirstPokemonRepository(

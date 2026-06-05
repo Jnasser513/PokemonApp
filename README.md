@@ -167,6 +167,12 @@ build-logic/
 ./gradlew :pokemon:presentation:testDebugUnitTest :core:data:testDebugUnitTest :core:database:testDebugUnitTest
 ```
 
+## Demo
+
+Video de referencia de la app:
+
+https://github.com/user-attachments/assets/526d2c43-31e2-4602-b7e7-e8b63fb83c32
+
 ## Notas
 
 - La app está pensada para crecer por features.

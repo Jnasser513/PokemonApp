@@ -25,7 +25,10 @@ fun PokemonList(
         verticalArrangement = Arrangement.spacedBy(15.dp),
         horizontalArrangement = Arrangement.spacedBy(15.dp)
     ) {
-        items(pokemonList) { item ->
+        items(
+            items = pokemonList,
+            key = { it.number }
+        ) { item ->
             PokemonItem(
                 pokemon = item,
                 onClick = { number ->

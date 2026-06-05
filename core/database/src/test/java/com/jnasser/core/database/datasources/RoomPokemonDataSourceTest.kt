@@ -1,6 +1,7 @@
 package com.jnasser.core.database.datasources
 
 import android.database.sqlite.SQLiteFullException
+import com.jnasser.core.database.PokemonDatabase
 import com.jnasser.core.database.daos.PokemonDao
 import com.jnasser.core.database.entities.FavoritePokemonEntity
 import com.jnasser.core.database.entities.PokemonEntity
@@ -23,8 +24,9 @@ import org.junit.Test
 
 class RoomPokemonDataSourceTest {
 
+    private val pokemonDatabase = mockk<PokemonDatabase>(relaxed = true)
     private val pokemonDao = mockk<PokemonDao>()
-    private val dataSource = RoomPokemonDataSource(pokemonDao)
+    private val dataSource = RoomPokemonDataSource(pokemonDatabase, pokemonDao)
 
     @Test
     fun `get favorite pokemons maps entity graph to domain`() = kotlinx.coroutines.test.runTest {
@@ -94,6 +96,27 @@ class RoomPokemonDataSourceTest {
         val result = dataSource.isPokemonFavorite(7L)
 
         assertTrue(result)
+    }
+
+    @Test
+    fun `upsert pokemons writes graph in a single transaction`() = kotlinx.coroutines.test.runTest {
+        every { pokemonDatabase.runInTransaction(any<Runnable>()) } answers {
+            firstArg<Runnable>().run()
+        }
+        coEvery { pokemonDao.upsertPokemon(any()) } returns 1L
+        coEvery { pokemonDao.upsertPokemonStats(any()) } returns listOf(1L)
+        coEvery { pokemonDao.upsertPokemonTypes(any()) } returns listOf(1L)
+
+        val result = dataSource.upsertPokemons(
+            listOf(
+                com.jnasser.core.testing.pokemonTestData(1, "bulbasaur")
+            )
+        )
+
+        assertTrue(result is Result.Success)
+        coVerify(exactly = 1) { pokemonDao.upsertPokemon(any()) }
+        coVerify(exactly = 1) { pokemonDao.upsertPokemonStats(any()) }
+        coVerify(exactly = 1) { pokemonDao.upsertPokemonTypes(any()) }
     }
 
 }

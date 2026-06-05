@@ -1,16 +1,16 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/jnasser/Desktop/Trabajo/PruebasTecnicas/PokemonApp/pokemon/data/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2252767020639837980.xml:2:13-83
-INJECTED from /Users/jnasser/Desktop/Trabajo/PruebasTecnicas/PokemonApp/pokemon/data/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2252767020639837980.xml:2:13-83
+ADDED from /Users/jnasser/Desktop/Trabajo/PruebasTecnicas/PokemonApp/pokemon/data/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13040588468179715964.xml:2:13-83
+INJECTED from /Users/jnasser/Desktop/Trabajo/PruebasTecnicas/PokemonApp/pokemon/data/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13040588468179715964.xml:2:13-83
 	package
-		INJECTED from /Users/jnasser/Desktop/Trabajo/PruebasTecnicas/PokemonApp/pokemon/data/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2252767020639837980.xml
+		INJECTED from /Users/jnasser/Desktop/Trabajo/PruebasTecnicas/PokemonApp/pokemon/data/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13040588468179715964.xml
 	xmlns:android
-		ADDED from /Users/jnasser/Desktop/Trabajo/PruebasTecnicas/PokemonApp/pokemon/data/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2252767020639837980.xml:2:23-81
+		ADDED from /Users/jnasser/Desktop/Trabajo/PruebasTecnicas/PokemonApp/pokemon/data/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13040588468179715964.xml:2:23-81
 uses-sdk
-INJECTED from /Users/jnasser/Desktop/Trabajo/PruebasTecnicas/PokemonApp/pokemon/data/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2252767020639837980.xml reason: use-sdk injection requested
-INJECTED from /Users/jnasser/Desktop/Trabajo/PruebasTecnicas/PokemonApp/pokemon/data/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2252767020639837980.xml
-INJECTED from /Users/jnasser/Desktop/Trabajo/PruebasTecnicas/PokemonApp/pokemon/data/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2252767020639837980.xml
+INJECTED from /Users/jnasser/Desktop/Trabajo/PruebasTecnicas/PokemonApp/pokemon/data/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13040588468179715964.xml reason: use-sdk injection requested
+INJECTED from /Users/jnasser/Desktop/Trabajo/PruebasTecnicas/PokemonApp/pokemon/data/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13040588468179715964.xml
+INJECTED from /Users/jnasser/Desktop/Trabajo/PruebasTecnicas/PokemonApp/pokemon/data/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13040588468179715964.xml
 	android:targetSdkVersion
-		INJECTED from /Users/jnasser/Desktop/Trabajo/PruebasTecnicas/PokemonApp/pokemon/data/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2252767020639837980.xml
+		INJECTED from /Users/jnasser/Desktop/Trabajo/PruebasTecnicas/PokemonApp/pokemon/data/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13040588468179715964.xml
 	android:minSdkVersion
-		INJECTED from /Users/jnasser/Desktop/Trabajo/PruebasTecnicas/PokemonApp/pokemon/data/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2252767020639837980.xml
+		INJECTED from /Users/jnasser/Desktop/Trabajo/PruebasTecnicas/PokemonApp/pokemon/data/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13040588468179715964.xml
