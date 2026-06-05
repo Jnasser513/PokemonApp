@@ -1,1 +1,13 @@
 com.jnasser.pokemon.presentation
+string height
+string height_value
+string hello
+string pokeball
+string pokedex
+string pokemon
+string pokemon_name
+string pokemon_number
+string stats
+string weight
+string weight_value
+string welcome
