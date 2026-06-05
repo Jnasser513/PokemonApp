@@ -12,4 +12,10 @@ dependencies {
 
     // Modules
     implementation(projects.core.domain)
+    testImplementation(projects.core.testFixtures)
+
+    testImplementation(libs.junit)
+    testImplementation(libs.mockk)
+    testImplementation(libs.turbine)
+    testImplementation(libs.coroutines.test)
 }
